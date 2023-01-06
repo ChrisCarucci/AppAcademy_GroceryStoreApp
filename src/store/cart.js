@@ -4,6 +4,7 @@ const INCREMENT_COUNT = 'cart/incrementCount';
 const DECREMENT_COUNT = 'cart/decrementCount';
 const SET_NEW_COUNT = 'cart/setCount';
 const EMPTY_CART = 'cart/emptyCart';
+const SHOW_CART = 'cart/showCart'
 
 
 export const addProduct = (productId) => {
@@ -48,6 +49,12 @@ export const emptyCart = () => {
   }
 }
 
+export const shownCart = () => {
+  return {
+    type: SHOW_CART,
+  }
+}
+
 export default function cartReducer (state = {}, action) {
   const id = action.productId;
   const nextState = {...state};
@@ -84,6 +91,10 @@ export default function cartReducer (state = {}, action) {
 
     case EMPTY_CART:
       return {};
+
+    case SHOW_CART:
+      nextState.shown = true
+      return nextState;
 
     default:
       return state;
