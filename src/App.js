@@ -26,7 +26,7 @@ console.log(cart.shown)
     <>
       <nav>
         <h1>Grocery Store</h1>
-        <button className="checkout-button" onClick={() => dispatch(shownCart())}>
+        <button className="checkout-button" onClick={() => dispatch(shownCart(true))}>
           <i className="fas fa-shopping-bag" />
           Checkout
         </button>
@@ -39,7 +39,7 @@ console.log(cart.shown)
         style={cart.shown ? { transform: 'translateX(-100%)' } : {}}
       >
         <div className="sidebar-header">
-          <button className="arrow-button" onClick={() => dispatch(shownCart())}>
+          <button className="arrow-button" onClick={() => dispatch(shownCart(false))}>
             <i className="fas fa-arrow-right"></i>
           </button>
         </div>

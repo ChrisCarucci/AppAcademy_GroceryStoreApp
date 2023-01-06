@@ -94,7 +94,7 @@ export default function cartReducer (state = {}, action) {
       return {};
 
     case SHOW_CART:
-      nextState.shown = bool
+      nextState.shown = action.bool
       return nextState;
 
     default:
