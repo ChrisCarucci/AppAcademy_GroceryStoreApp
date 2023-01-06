@@ -49,9 +49,10 @@ export const emptyCart = () => {
   }
 }
 
-export const shownCart = () => {
+export const shownCart = (bool) => {
   return {
     type: SHOW_CART,
+    bool
   }
 }
 
@@ -93,7 +94,7 @@ export default function cartReducer (state = {}, action) {
       return {};
 
     case SHOW_CART:
-      nextState.shown = true
+      nextState.shown = bool
       return nextState;
 
     default:

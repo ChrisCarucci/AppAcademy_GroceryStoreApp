@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Cart from './components/Cart';
 import ProduceList from './components/ProduceList';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { populateProduce } from './store/produce';
 import { shownCart } from './store/cart';
 
@@ -10,6 +10,7 @@ import { shownCart } from './store/cart';
 function App() {
   const [showCart, setShowCart] = useState(false);
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart)
 
 
   useEffect(() => {
@@ -18,27 +19,27 @@ function App() {
 
   useEffect(() => {
     dispatch(shownCart(true))
-  })
+  }, [dispatch])
   
-
+console.log(cart.shown)
   return (
     <>
       <nav>
         <h1>Grocery Store</h1>
-        <button className="checkout-button" onClick={() => setShowCart(true)}>
+        <button className="checkout-button" onClick={() => dispatch(shownCart())}>
           <i className="fas fa-shopping-bag" />
           Checkout
         </button>
       </nav>
-      <main style={showCart ? { marginRight: '300px' } : {}} >
+      <main style={cart.shown ? { marginRight: '300px' } : {}} >
         <ProduceList />
-      </main>
+      </main>3
       <div
         className="sidebar"
-        style={showCart ? { transform: 'translateX(-100%)' } : {}}
+        style={cart.shown ? { transform: 'translateX(-100%)' } : {}}
       >
         <div className="sidebar-header">
-          <button className="arrow-button" onClick={() => setShowCart(false)}>
+          <button className="arrow-button" onClick={() => dispatch(shownCart())}>
             <i className="fas fa-arrow-right"></i>
           </button>
         </div>
